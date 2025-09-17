@@ -6,3 +6,5 @@ while true; do
     fi
     sleep 5
 done &
+
+python port.py
