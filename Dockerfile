@@ -14,3 +14,6 @@ COPY . /app
 # Instala librerías de Python
 RUN python -m pip install --upgrade pip
 RUN pip install -r requirements.txt
+
+# Ejecutar Bot
+CMD ["python", "TestBot.py"]
