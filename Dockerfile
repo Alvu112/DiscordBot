@@ -16,4 +16,4 @@ RUN python -m pip install --upgrade pip
 RUN pip install -r requirements.txt
 
 # Ejecutar Bot
-CMD ["python", "TestBot.py"]
+CMD python TestBot.py & python port.py
