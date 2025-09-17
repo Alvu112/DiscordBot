@@ -14,6 +14,7 @@ COPY . /app
 # Instala librerías de Python
 RUN python -m pip install --upgrade pip
 RUN pip install -r requirements.txt
+RUN chmod +x /app/start.sh
 
 # Ejecutar Bot
-CMD python TestBot.py & python port.py
+CMD ["sh", "/app/start.sh"]
