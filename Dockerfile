@@ -17,4 +17,4 @@ RUN pip install -r requirements.txt
 RUN chmod +x /app/start.sh
 
 # Ejecutar Bot
-CMD ["sh", "/app/start.sh"]
+CMD ["sh", "/app/restart.sh"]
