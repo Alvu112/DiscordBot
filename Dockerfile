@@ -14,7 +14,7 @@ COPY . /app
 # Instala librerías de Python
 RUN python -m pip install --upgrade pip
 RUN pip install -r requirements.txt
-RUN chmod +x /app/start.sh
+RUN chmod +x /app/restart.sh
 
 # Ejecutar Bot
 CMD ["sh", "/app/restart.sh"]
