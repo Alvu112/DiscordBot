@@ -1,6 +1,7 @@
 import discord
 import os
 from discord.ext import tasks
+from datetime import datetime
 from googleapiclient.discovery import build
 
 intents = discord.Intents.default()
@@ -19,6 +20,15 @@ CHANNELS = [
 last_videos = {ch['youtube_id']: None for ch in CHANNELS}
 
 youtube = build('youtube', 'v3', developerKey=YOUTUBE_API_KEY)
+
+@tasks.loop(minutes=5)
+async def keep_alive_message():
+    channel = client.get_channel(1418065540559278190)
+    if channel:
+        ahora = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+        await channel.send(f"🕒 {ahora} ✅ Bot sigue activo")
+    else:
+        print("❌ No se encontró el canal 1418065540559278190")
 
 # Ver último video
 def get_latest_video(channel_id):
@@ -91,7 +101,16 @@ async def ciudad_defensa(interaction: discord.Interaction):
 async def on_ready():
     await tree.sync()
     check_youtube.start()
+    keep_alive_message.start()
     print(f"Bot listo: {client.user}")
+
+@client.event
+async def on_disconnect():
+    print("[-] Se perdió la conexión con Discord")
+
+@client.event
+async def on_resumed():
+    print("+] Se reanudó la conexión con Discord")
 
 # Ejecutar bot
 if not DISCORD_TOKEN:
@@ -99,4 +118,5 @@ if not DISCORD_TOKEN:
     exit(1)
 
 client.run(DISCORD_TOKEN)
+
 
