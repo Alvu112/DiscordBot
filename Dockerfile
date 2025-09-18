@@ -15,6 +15,7 @@ COPY . /app
 RUN python -m pip install --upgrade pip
 RUN pip install -r requirements.txt
 RUN chmod +x /app/restart.sh
+RUN apt-get update && apt-get install -y procps && rm -rf /var/lib/apt/lists/*
 
 # Ejecutar Bot
 CMD ["sh", "/app/restart.sh"]
