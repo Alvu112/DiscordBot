@@ -72,16 +72,19 @@ async def check_youtube():
 # Comandos slash
 @tree.command(name="hola", description="Saluda")
 async def slash_hola(interaction: discord.Interaction):
-    await interaction.response.send_message("¡Hola! Soy tu bot")
+    await interaction.response.defer()
+    await interaction.followup.send("¡Hola! Soy tu bot")
 
 @tree.command(name="adios", description="Se despide")
 async def slash_adios(interaction: discord.Interaction):
-    await interaction.response.send_message("Vete a la mierda")
+    await interaction.response.defer()
+    await interaction.followup.send("Vete a la mierda")
 
 @tree.command(name="armonia", description="Foto Ciudadela de la Armonía")
 async def ciudad_defensa(interaction: discord.Interaction):
+    await interaction.response.defer()
     file = discord.File("./temporada/armonia.webp", filename="armonia.webp")
-    await interaction.response.send_message(file=file)
+    await interaction.followup.send(file=file)
 
 # Evento ready
 @client.event
@@ -96,3 +99,4 @@ if not DISCORD_TOKEN:
     exit(1)
 
 client.run(DISCORD_TOKEN)
+
