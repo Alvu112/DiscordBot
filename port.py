@@ -17,7 +17,7 @@ def keep_alive():
             requests.get(url)
         except Exception:
             pass
-        time.sleep(45)
+        time.sleep(20)
 
 threading.Thread(target=keep_alive, daemon=True).start()
 
