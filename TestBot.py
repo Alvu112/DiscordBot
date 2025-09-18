@@ -1,5 +1,6 @@
 import discord
 import os
+import logging
 from discord.ext import tasks
 from datetime import datetime
 from googleapiclient.discovery import build
@@ -8,6 +9,7 @@ intents = discord.Intents.default()
 intents.message_content = True
 client = discord.Client(intents=intents)
 tree = discord.app_commands.CommandTree(client)
+logging.basicConfig(level=logging.DEBUG)
 
 YOUTUBE_API_KEY = os.getenv("YOUTUBE_API_KEY")
 DISCORD_TOKEN = os.getenv("DISCORD_BOT_TOKEN")
@@ -118,5 +120,3 @@ if not DISCORD_TOKEN:
     exit(1)
 
 client.run(DISCORD_TOKEN)
-
-
